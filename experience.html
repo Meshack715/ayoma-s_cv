@@ -1,0 +1,315 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Experience - Dr. Junior Jasper Ayoma</title>
+    <style>
+        /* Global Styles */
+        body {
+            font-family: 'Arial', sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f0f4f8;
+            color: #333;
+            height: 100vh;
+            font-size: 16px; /* Base font size */
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between; /* Space between header and footer */
+        }
+
+        header {
+            background: linear-gradient(90deg, #0d6efd, #5a9aff);
+            color: white;
+            padding: 20px 0;
+            text-align: center;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        header h1 {
+            font-size: 36px;
+            margin: 0;
+        }
+
+        /* Menu Icon Button */
+        #menu-icon {
+            width: 50px;
+            height: 50px;
+            background-color: #0d6efd;
+            border-radius: 50%;
+            color: white;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            cursor: pointer;
+            position: fixed;
+            top: 20px;
+            left: 20px;
+            font-size: 24px;
+            z-index: 1000;
+        }
+
+        /* Styles for the text next to the icon */
+        #menu-text {
+            color: white; /* Changed to white */
+            font-size: 18px;
+            margin-left: 10px;
+            position: fixed;
+            top: 35px; /* Align with the center of the menu icon */
+            left: 80px; /* Adjust based on preference */
+            z-index: 1000;
+            font-weight: bold; /* Make text bold for better visibility */
+        }
+
+        /* Circular Menu */
+        .menu-container {
+            position: fixed;
+            top: 100px;
+            left: 100px;
+            width: 250px;
+            height: 250px;
+            border-radius: 50%;
+            background-color: #0d6efd;
+            display: none; /* Initially hidden */
+            justify-content: center;
+            align-items: center;
+            z-index: 999;
+            box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1);
+        }
+
+        .menu-container.active {
+            display: flex; /* Show menu when active */
+        }
+
+        .menu-items {
+            width: 100%;
+            height: 100%;
+            position: relative;
+        }
+
+        .menu-item {
+            width: 60px;
+            height: 60px;
+            background-color: white;
+            border-radius: 50%;
+            position: absolute;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: #0d6efd;
+            font-size: 14px;
+            cursor: pointer;
+            transition: background-color 0.3s ease, color 0.3s ease;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .menu-item:hover {
+            background-color: #5a9aff;
+            color: white;
+        }
+
+        /* Positioning the menu items */
+        .menu-item:nth-child(1) {
+            top: 0;
+            left: 50%;
+            transform: translate(-50%, -50%);
+        }
+
+        .menu-item:nth-child(2) {
+            top: 25%;
+            right: 0;
+            transform: translate(50%, -50%);
+        }
+
+        .menu-item:nth-child(3) {
+            bottom: 0;
+            right: 50%;
+            transform: translate(50%, 50%);
+        }
+
+        .menu-item:nth-child(4) {
+            bottom: 25%;
+            left: 0;
+            transform: translate(-50%, 50%);
+        }
+
+        .menu-item:nth-child(5) {
+            left: 50%;
+            bottom: 50%;
+            transform: translate(-50%, 50%);
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 60px auto;
+            padding: 0 20px;
+            flex-grow: 1; /* Allow container to grow */
+        }
+
+        /* Section Styles */
+        .section-title {
+            font-size: 28px;
+            color: #0d6efd;
+            margin-bottom: 20px;
+            position: relative;
+            text-transform: uppercase;
+        }
+
+        .section-title::after {
+            content: '';
+            width: 60px;
+            height: 4px;
+            background-color: #0d6efd;
+            position: absolute;
+            bottom: -10px;
+            left: 0;
+        }
+
+        ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        ul li {
+            padding: 10px 0;
+            border-bottom: 1px solid #ddd;
+        }
+
+        ul li:last-child {
+            border-bottom: none;
+        }
+
+        /* Footer Styles */
+        footer {
+            background-color: #0d6efd;
+            color: white;
+            text-align: center;
+            padding: 10px 0;
+            font-size: 14px;
+        }
+
+        /* Responsive Styles */
+        @media (max-width: 600px) {
+            #menu-text {
+                display: none; /* Hide the text on small screens */
+            }
+
+            body {
+                font-size: 14px; /* Reduce font size on small screens */
+            }
+
+            header h1 {
+                font-size: 28px; /* Adjust header size */
+            }
+
+            header p {
+                font-size: 16px; /* Adjust paragraph size */
+            }
+        }
+
+        @media (max-width: 400px) {
+            body {
+                font-size: 12px; /* Further reduce font size for very small screens */
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Header Section -->
+    <header>
+        <h1>Dr. Junior Jasper Ayoma</h1>
+        <p>Medical Laboratory Specialist | Diagnostic Expert</p>
+        <p id="greeting"></p> <!-- Greeting Message -->
+    </header>
+
+    <!-- Menu Icon with Instruction Text -->
+    <div id="menu-icon">☰</div>
+    <div id="menu-text">Click for More Info</div> <!-- Instruction text -->
+
+    <!-- Rotating Wheel Menu -->
+    <div class="menu-container" id="menu-container">
+        <div class="menu-items">
+            <div class="menu-item" data-link="./index.html">Profile</div>
+            <div class="menu-item" data-link="./skills.html">Skills</div>
+            <div class="menu-item" data-link="./education.html">Education</div>
+            <div class="menu-item" data-link="./research.html">Research</div>
+            <div class="menu-item" data-link="./publications.html">Publications</div>
+            <div class="menu-item" data-link="./experience.html">Experience</div>
+            
+            <div class="menu-item" data-link="./contact.html">Contact</div>
+        </div>
+    </div>
+
+    <div class="container">
+        <!-- Experience Section -->
+        <div class="experience">
+            <h2 class="section-title">Professional Experience</h2>
+            <ul>
+                <li>
+                    <strong>Senior Medical Laboratory Technician</strong>, Hospital
+                    <br><em>Jan 2027 - Present</em>
+                    <p>Responsible for overseeing laboratory operations and ensuring accurate and timely results for patient testing.</p>
+                </li>
+                <li>
+                    <strong>Medical Laboratory Technologist</strong>, Diagnostics
+                    <br><em>Jun 2026 - Dec 2026</em>
+                    <p>Conducted complex diagnostic tests and collaborated with medical staff to provide critical insights for patient care.</p>
+                </li>
+                <li>
+                    <strong>Laboratory Intern</strong>, Medical Center
+                    <br><em>Jan 2025 - May 22025</em>
+                    <p>Assisted senior technicians in performing tests and maintaining laboratory equipment.</p>
+                </li>
+            </ul>
+        </div>
+    </div>
+
+    <!-- Footer Section -->
+    <footer>
+        <p>&copy; 2024 Dr. Junior Jasper Ayoma | All Rights Reserved</p>
+    </footer>
+
+    <script>
+        // Greeting Message Based on Time of Day
+        const greetingElement = document.getElementById('greeting');
+        const currentHour = new Date().getHours();
+        let greetingMessage;
+
+        if (currentHour < 12) {
+            greetingMessage = "Good Morning!";
+        } else if (currentHour < 18) {
+            greetingMessage = "Good Afternoon!";
+        } else {
+            greetingMessage = "Good Evening!";
+        }
+
+        greetingElement.textContent = greetingMessage;
+
+        // Menu Toggle Functionality
+        const menuIcon = document.getElementById('menu-icon');
+        const menuContainer = document.getElementById('menu-container');
+
+        menuIcon.addEventListener('click', () => {
+            menuContainer.classList.toggle('active');
+        });
+
+        // Close menu when clicking outside
+        window.addEventListener('click', (event) => {
+            if (!menuContainer.contains(event.target) && event.target !== menuIcon) {
+                menuContainer.classList.remove('active');
+            }
+        });
+
+        // Navigate to linked pages
+        document.querySelectorAll('.menu-item').forEach(item => {
+            item.addEventListener('click', () => {
+                window.location.href = item.getAttribute('data-link');
+            });
+        });
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,344 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact - Dr. Junior Jasper Ayoma</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        /* Global Styles */
+        body {
+            font-family: 'Arial', sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f0f4f8;
+            color: #333;
+            height: auto; /* Change to auto for content expansion */
+            font-size: 16px;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+
+        header {
+            background: linear-gradient(90deg, #0d6efd, #5a9aff);
+            color: white;
+            padding: 20px 0;
+            text-align: center;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        header h1 {
+            font-size: 36px;
+            margin: 0;
+        }
+
+        /* Menu Icon Button */
+        #menu-icon {
+            width: 50px;
+            height: 50px;
+            background-color: #0d6efd;
+            border-radius: 50%;
+            color: white;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            cursor: pointer;
+            position: fixed;
+            top: 20px;
+            left: 20px;
+            font-size: 24px;
+            z-index: 1000;
+        }
+
+        /* Circular Menu */
+        .menu-container {
+            position: fixed;
+            top: 100px;
+            left: 100px;
+            width: 250px;
+            height: 250px;
+            border-radius: 50%;
+            background-color: #0d6efd;
+            display: none; /* Initially hidden */
+            justify-content: center;
+            align-items: center;
+            z-index: 999;
+            box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1);
+        }
+
+        .menu-container.active {
+            display: flex; /* Show menu when active */
+        }
+
+        .menu-items {
+            width: 100%;
+            height: 100%;
+            position: relative;
+        }
+
+        .menu-item {
+            width: 60px;
+            height: 60px;
+            background-color: white;
+            border-radius: 50%;
+            position: absolute;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: #0d6efd;
+            font-size: 14px;
+            cursor: pointer;
+            transition: background-color 0.3s ease, color 0.3s ease;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .menu-item:hover {
+            background-color: #5a9aff;
+            color: white;
+        }
+
+        /* Positioning the menu items */
+        .menu-item:nth-child(1) {
+            top: 0;
+            left: 50%;
+            transform: translate(-50%, -50%);
+        }
+
+        .menu-item:nth-child(2) {
+            top: 25%;
+            right: 0;
+            transform: translate(50%, -50%);
+        }
+
+        .menu-item:nth-child(3) {
+            bottom: 0;
+            right: 50%;
+            transform: translate(50%, 50%);
+        }
+
+        .menu-item:nth-child(4) {
+            bottom: 25%;
+            left: 0;
+            transform: translate(-50%, 50%);
+        }
+
+        .menu-item:nth-child(5) {
+            left: 50%;
+            bottom: 50%;
+            transform: translate(-50%, 50%);
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 60px auto;
+            padding: 0 20px;
+            flex-grow: 1; /* Allow container to grow */
+        }
+
+        /* Section Styles */
+        .section-title {
+            font-size: 28px;
+            color: #0d6efd;
+            margin-bottom: 20px;
+            position: relative;
+            text-transform: uppercase;
+        }
+
+        .section-title::after {
+            content: '';
+            width: 60px;
+            height: 4px;
+            background-color: #0d6efd;
+            position: absolute;
+            bottom: -10px;
+            left: 0;
+        }
+
+        /* Contact Form Styles */
+        .contact-form {
+            background-color: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            margin-top: 20px;
+        }
+
+        .contact-form input,
+        .contact-form textarea {
+            width: 100%;
+            padding: 10px;
+            margin: 10px 0;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+
+        .contact-form button {
+            background-color: #0d6efd;
+            color: white;
+            border: none;
+            padding: 10px 15px;
+            cursor: pointer;
+            border-radius: 4px;
+            transition: background-color 0.3s;
+        }
+
+        .contact-form button:hover {
+            background-color: #5a9aff;
+        }
+
+        /* Map Styles */
+        .map-container {
+            margin-top: 20px;
+            width: 100%;
+            height: 300px;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        /* Footer Styles */
+        footer {
+            background-color: #0d6efd;
+            color: white;
+            text-align: center;
+            padding: 10px 0;
+            font-size: 14px;
+        }
+
+        /* Social Media Styles */
+        .social-icons {
+            display: flex;
+            justify-content: center;
+            margin-top: 20px;
+        }
+
+        .social-icons a {
+            margin: 0 10px;
+            color: #0d6efd;
+            font-size: 24px;
+            transition: color 0.3s;
+        }
+
+        .social-icons a:hover {
+            color: #5a9aff;
+        }
+
+        /* Responsive Styles */
+        @media (max-width: 600px) {
+            body {
+                font-size: 14px;
+            }
+
+            header h1 {
+                font-size: 28px;
+            }
+
+            header p {
+                font-size: 16px;
+            }
+        }
+
+        @media (max-width: 400px) {
+            body {
+                font-size: 12px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Header Section -->
+    <header>
+        <h1>Contact Dr. Junior Jasper Ayoma</h1>
+        <p>Feel free to reach out for inquiries or appointments.</p>
+    </header>
+
+    <!-- Menu Icon -->
+    <div id="menu-icon">☰</div>
+
+    <!-- Rotating Wheel Menu -->
+    <div class="menu-container" id="menu-container">
+        <div class="menu-items">
+            <div class="menu-item" data-link="./index.html">Profile</div>
+            <div class="menu-item" data-link="./skills.html">Skills</div>
+            <div class="menu-item" data-link="./education.html">Education</div>
+            <div class="menu-item" data-link="./research.html">Research</div>
+            <div class="menu-item" data-link="./publications.html">Publications</div>
+            <div class="menu-item" data-link="./experience.html">Experience</div>
+            
+            <div class="menu-item" data-link="./contact.html">Contact</div>
+        </div>
+    </div>
+
+    <div class="container">
+        <h2 class="section-title">Contact Information</h2>
+        <p>If you would like to get in touch, please contact me through any of the following:</p>
+        <ul>
+            <li>Email: <a href="mailto:junior.jasper@example.com">junior.jasper@example.com</a></li>
+            <li>Phone: <a href="tel:+254 713 793795">+(254) 713-793-795</a></li>
+            <li>LinkedIn: <a href="https://linkedin.com/in/junior-jasper-ayoma" target="_blank">junior-jasper-ayoma</a></li>
+        </ul>
+
+        <h2 class="section-title">Send a Message</h2>
+        <form class="contact-form" id="contact-form">
+            <input type="text" id="name" name="name" placeholder="Your Name" required>
+            <input type="email" id="email" name="email" placeholder="Your Email" required>
+            <textarea id="message" name="message" rows="4" placeholder="Your Message" required></textarea>
+            <button type="submit">Send Message</button>
+        </form>
+
+        <div class="map-container">
+            <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3151.8354345098344!2d144.95373531531754!3d-37.81627997975181!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x6ad642af0f0c8ed1%3A0xa6c066db96e6870b!2sVictoria%20University!5e0!3m2!1sen!2sau!4v1626706369635!5m2!1sen!2sau" 
+                width="100%" height="100%" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
+        </div>
+
+        <h2 class="section-title">Follow Me</h2>
+        <div class="social-icons">
+            <a href="https://www.facebook.com/junior.jasper" target="_blank"><i class="fab fa-facebook-f"></i></a>
+            <a href="https://twitter.com/junior_jasper" target="_blank"><i class="fab fa-twitter"></i></a>
+            <a href="https://www.instagram.com/junior.jasper" target="_blank"><i class="fab fa-instagram"></i></a>
+            <a href="https://www.linkedin.com/in/junior-jasper-ayoma" target="_blank"><i class="fab fa-linkedin-in"></i></a>
+        </div>
+    </div>
+
+    <!-- Footer Section -->
+    <footer>
+        <p>&copy; 2024 Dr. Junior Jasper Ayoma. All rights reserved.</p>
+    </footer>
+
+    <script>
+        // JavaScript for menu toggle and form submission
+        const menuIcon = document.getElementById('menu-icon');
+        const menuContainer = document.getElementById('menu-container');
+        const menuItems = document.querySelectorAll('.menu-item');
+        const contactForm = document.getElementById('contact-form');
+
+        menuIcon.addEventListener('click', () => {
+            menuContainer.classList.toggle('active');
+        });
+
+        menuItems.forEach(item => {
+            item.addEventListener('click', () => {
+                const link = item.getAttribute('data-link');
+                window.location.href = link;
+            });
+        });
+
+        contactForm.addEventListener('submit', (e) => {
+            e.preventDefault();
+            alert("Your message has been sent successfully!"); // Add success message
+            contactForm.reset(); // Reset form after submission
+        });
+
+        // Close menu when clicking outside
+        document.addEventListener('click', (e) => {
+            if (!menuContainer.contains(e.target) && !menuIcon.contains(e.target)) {
+                menuContainer.classList.remove('active');
+            }
+        });
+    </script>
+</body>
+
+</html>
